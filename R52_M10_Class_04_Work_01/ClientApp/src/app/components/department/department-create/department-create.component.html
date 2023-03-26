@@ -1,0 +1,28 @@
+<mat-card class="form-card">
+  <mat-card-header>
+    <mat-card-title>Create department</mat-card-title>
+    <mat-card-subtitle>Fill up the form</mat-card-subtitle>
+    <span class="spacer"></span>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="departmentForm" (ngSubmit)="save()">
+      <mat-form-field class="f-w mb-1">
+        <mat-label>Department name</mat-label>
+        <input type="text" matInput formControlName="departmentName" />
+
+        <mat-error *ngIf="f['departmentName'].hasError('maxLength')">
+          Maximum <strong>50</strong> character allowed
+        </mat-error>
+        <mat-error *ngIf="f['departmentName'].hasError('required')">
+          Department name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <div class="f-w mb-1">
+        <button mat-raised-button color="primary" type="submit" [disabled]="departmentForm.invalid">Save</button>
+      </div>
+    </form>
+  </mat-card-content>
+  <mat-card-actions>
+    <a mat-button [routerLink]="['/departments']">Back to department list</a>
+  </mat-card-actions>
+</mat-card>
